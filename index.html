@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Arcaea選曲BOT</title>
+</head>
+<body>
+    <header><stromg>Arcaea選曲BOT</stromg></header><br>
+    <p>難易度</p>
+    <form name="chbox">
+        <label><input type="checkbox" value="7" checked>7</label>
+        <label><input type="checkbox" value="8" checked>8</label>
+        <label><input type="checkbox" value="9" checked>9</label>
+        <label><input type="checkbox" value="9p" checked>9p</label>
+        <label><input type="checkbox" value="10" checked>10</label>
+        <label><input type="checkbox" value="10p" checked>10+</label>
+        <label><input type="checkbox" value="11" checked>11+</label>
+        <br>
+        <p>曲数</p>
+        <select name="Quantity">
+            <option value="0">1</option>
+            <option value="1">2</option>
+            <option value="2">3</option>
+            <option value="3">4</option>
+            <option value="4">5</option>
+            <option value="5">6</option>
+            <option value="6">7</option>
+            <option value="7">8</option>
+            <option value="8">9</option>
+            <option value="9">10</option>
+            <option value="10">11</option>
+            <option value="11">12</option>
+        </select>
+        
+    </form>
+    <br>
+    <form name="botan">
+        <input type="button" value="選曲" onclick="window.select()">
+        (ボタンを押すたびに結果が変わります)
+        <br>
+    </form>
+    <p><strong>結果</strong></p>
+    <form name="resultbox">
+        <input type="text" name="txttb" value="">
+    </form>
+    <p><strong>説明</strong></p>
+    <p>選択された難易度の曲がランダムに指定の数だけ表示されます</p>
+    <p>左から難易度が低い順に表示されます</p>
+    <script>
+        function select(){
+
+        
+        
+        function rsort(a,b) {
+            return(a-b)
+        }
+        var qua=document.chbox.Quantity.selectedIndex
+    
+
+
+        var song_list=new Array();
+
+        if(document.chbox.elements[0].checked){
+            for (var i=0;i<arc7.length;i++){
+                song_list.push(arc7[i]);
+            };
+        }
+        if(document.chbox.elements[1].checked){
+            for (var i=0;i<arc8.length;i++){
+                song_list.push(arc8[i]);
+            }
+        };
+        if(document.chbox.elements[2].checked){
+            for (var i=0;i<arc9.length;i++){
+
+                song_list.push(arc9[i]);
+            }
+        };
+        if(document.chbox.elements[3].checked){
+            for (var i=0;i<arc9p.length;i++){
+                song_list.push(arc9p[i]);
+            }
+        };
+        if(document.chbox.elements[4].checked){
+            for (var i=0;i<arc10.length;i++){
+                song_list.push(arc10[i]);
+            }
+        };
+        if(document.chbox.elements[5].checked){
+            for (var i=0;i<arc10p.length;i++){
+                song_list.push(arc10p[i]);
+            }
+        };
+        if(document.chbox.elements[6].checked){
+            for (var i=0;i<arc11.length;i++){
+                song_list.push(arc11[i]);
+            }
+        };
+   
+
+
+        var song_num=new Array();
+        for(var i=0;i<=qua;i++){
+            song_num.push(Math.floor(Math.random()*(song_list.length)));
+        };
+       
+        var resong_num=new Array()
+        resong_num=song_num.sort(rsort);
+
+        var result=new Array();
+
+        for (var i=0;i<=qua;i++){
+            result.push(song_list[resong_num[i]])
+        }
+        var str=""
+        for (var i=0;i<=6;i++){
+            if(document.chbox.elements[i].checked){
+                var str=str+"a"
+            }
+        }
+        if (str==""){
+            alert("難易度を選択してください")
+        }
+        else{
+            document.resultbox.txttb.value=result;
+        }
+
+    }
+        
+
+
+        
+       
+        
+       
+    </script>
+    <script type="text/javascript" src="arcaea_songs.js"></script>
+</body>
+</html>
